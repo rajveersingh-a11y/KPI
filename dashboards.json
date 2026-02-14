@@ -1,0 +1,1526 @@
+{
+  "Dashboard-1": {
+    "title": "Dashboard-1",
+    "departments": [
+      "Finance"
+    ],
+    "kpis": [
+      {
+        "name": "Feeder Loss (%)",
+        "department": "Finance",
+        "value": 12.59,
+        "unit": "%",
+        "trend": [
+          9.0,
+          10.89,
+          10.5,
+          14.38,
+          13.92,
+          12.59
+        ]
+      },
+      {
+        "name": "DT (Distribution Transformer) Loss (%)",
+        "department": "Finance",
+        "value": 2.87,
+        "unit": "%",
+        "trend": [
+          2.74,
+          2.06,
+          2.39,
+          2.88,
+          2.05,
+          2.87
+        ]
+      },
+      {
+        "name": "LT Loss (%)",
+        "department": "Finance",
+        "value": 5.55,
+        "unit": "%",
+        "trend": [
+          5.7,
+          4.62,
+          5.85,
+          6.58,
+          3.91,
+          5.55
+        ]
+      },
+      {
+        "name": "Billing Efficiency (%)",
+        "department": "Finance",
+        "value": 91.96,
+        "unit": "%",
+        "trend": [
+          84.81,
+          81.11,
+          97.14,
+          84.73,
+          79.85,
+          91.96
+        ]
+      },
+      {
+        "name": "Collection Efficiency (%)",
+        "department": "Finance",
+        "value": 92.34,
+        "unit": "%",
+        "trend": [
+          86.49,
+          91.37,
+          89.51,
+          84.87,
+          95.35,
+          92.34
+        ]
+      },
+      {
+        "name": "AT&C Loss (%)",
+        "department": "Finance",
+        "value": 19.04,
+        "unit": "%",
+        "trend": [
+          22.8,
+          20.39,
+          23.17,
+          19.92,
+          21.38,
+          19.04
+        ]
+      },
+      {
+        "name": "Top X Best/Worst Feeders/DTs",
+        "department": "Finance",
+        "value": 12,
+        "unit": "count"
+      },
+      {
+        "name": "Top High Loss DTs / Feeders",
+        "department": "Finance",
+        "value": 32,
+        "unit": "count"
+      },
+      {
+        "name": "Top High-Loss Feeders / DTs",
+        "department": "Finance",
+        "value": 15,
+        "unit": "count"
+      }
+    ],
+    "charts": {
+      "lossTrend": {
+        "labels": [
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Jan"
+        ],
+        "datasets": [
+          {
+            "name": "Feeder Loss",
+            "data": [
+              9.0,
+              10.89,
+              10.5,
+              14.38,
+              13.92,
+              12.59
+            ]
+          },
+          {
+            "name": "DT (Distribution Transformer) Loss",
+            "data": [
+              2.74,
+              2.06,
+              2.39,
+              2.88,
+              2.05,
+              2.87
+            ]
+          },
+          {
+            "name": "LT Loss",
+            "data": [
+              5.7,
+              4.62,
+              5.85,
+              6.58,
+              3.91,
+              5.55
+            ]
+          },
+          {
+            "name": "AT&C Loss",
+            "data": [
+              22.8,
+              20.39,
+              23.17,
+              19.92,
+              21.38,
+              19.04
+            ]
+          }
+        ]
+      },
+      "efficiency": [
+        {
+          "name": "Billing Efficiency (%)",
+          "value": 91.96,
+          "unit": "%"
+        },
+        {
+          "name": "Collection Efficiency (%)",
+          "value": 92.34,
+          "unit": "%"
+        },
+        {
+          "name": "AT&C Loss (%)",
+          "value": 19.04,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-2": {
+    "title": "Dashboard-2",
+    "departments": [
+      "Operation",
+      "Analytics"
+    ],
+    "kpis": [
+      {
+        "name": "SAIDI",
+        "department": "Operation",
+        "value": 375.0,
+        "unit": "min",
+        "trend": [
+          363.0,
+          364.3,
+          307.2,
+          315.8,
+          360.5,
+          375.0
+        ]
+      },
+      {
+        "name": "SAIFI",
+        "department": "Operation",
+        "value": 10.171,
+        "unit": "interruptions",
+        "trend": [
+          11.21,
+          11.403,
+          11.291,
+          7.555,
+          10.995,
+          10.171
+        ]
+      },
+      {
+        "name": "CAIDI",
+        "department": "Operation",
+        "value": 42.1,
+        "unit": "min",
+        "trend": [
+          41.1,
+          36.3,
+          52.8,
+          46.9,
+          35.0,
+          42.1
+        ]
+      },
+      {
+        "name": "CAIFI",
+        "department": "Operation",
+        "value": 14.061,
+        "unit": "interruptions",
+        "trend": [
+          10.299,
+          16.546,
+          16.41,
+          13.115,
+          10.383,
+          14.061
+        ]
+      },
+      {
+        "name": "MAIFI",
+        "department": "Operation",
+        "value": 4.624,
+        "unit": "interruptions",
+        "trend": [
+          5.229,
+          3.827,
+          4.622,
+          5.691,
+          5.02,
+          4.624
+        ]
+      },
+      {
+        "name": "Number of Outages (Frequency)",
+        "department": "Operation",
+        "value": 83,
+        "unit": "count"
+      },
+      {
+        "name": "Duration of Outages (Minutes)",
+        "department": "Operation",
+        "value": 1866.1,
+        "unit": "min",
+        "trend": [
+          1934.8,
+          1600.5,
+          1960.8,
+          2311.5,
+          1753.5,
+          1866.1
+        ]
+      },
+      {
+        "name": "DT/Feeder Reliability Trends (Monthly/Yearly)",
+        "department": "Operation",
+        "value": 99.46,
+        "unit": "%",
+        "trend": [
+          92.39,
+          86.32,
+          85.68,
+          86.59,
+          94.1,
+          99.46
+        ]
+      },
+      {
+        "name": "DTs with High Failure Rate",
+        "department": "Operation",
+        "value": 30,
+        "unit": "count"
+      },
+      {
+        "name": "Detection Accuracy",
+        "department": "Operation",
+        "value": 91.54,
+        "unit": "%",
+        "trend": [
+          88.16,
+          91.53,
+          89.49,
+          86.02,
+          90.85,
+          91.54
+        ]
+      },
+      {
+        "name": "False Positive Rate",
+        "department": "Operation",
+        "value": 10.52,
+        "unit": "%",
+        "trend": [
+          8.09,
+          12.95,
+          12.1,
+          12.22,
+          9.51,
+          10.52
+        ]
+      },
+      {
+        "name": "Field inspection hit-rate",
+        "department": "Operation",
+        "value": 69.27,
+        "unit": "%",
+        "trend": [
+          65.08,
+          83.09,
+          83.03,
+          89.35,
+          84.09,
+          69.27
+        ]
+      },
+      {
+        "name": "MTTI",
+        "department": "Operation",
+        "value": 17.3,
+        "unit": "min",
+        "trend": [
+          18.6,
+          20.8,
+          17.4,
+          14.2,
+          16.0,
+          17.3
+        ]
+      },
+      {
+        "name": "MTTR",
+        "department": "Operation",
+        "value": 172.8,
+        "unit": "min",
+        "trend": [
+          175.4,
+          175.2,
+          156.3,
+          149.8,
+          127.6,
+          172.8
+        ]
+      },
+      {
+        "name": "Alert response time",
+        "department": "Operation",
+        "value": 44.4,
+        "unit": "min",
+        "trend": [
+          42.3,
+          34.4,
+          34.4,
+          39.0,
+          32.2,
+          44.4
+        ]
+      },
+      {
+        "name": "Planned outage suppression rate",
+        "department": "Operation",
+        "value": 92.85,
+        "unit": "%",
+        "trend": [
+          97.38,
+          84.92,
+          73.52,
+          88.47,
+          96.51,
+          92.85
+        ]
+      },
+      {
+        "name": "Low-voltage pockets",
+        "department": "Analytics",
+        "value": 18,
+        "unit": "count"
+      },
+      {
+        "name": "Feeders with Maximum Outages",
+        "department": "Operation",
+        "value": 17,
+        "unit": "count"
+      },
+      {
+        "name": "Reliability Improvement Trend",
+        "department": "Operation",
+        "value": 17.43,
+        "unit": "%",
+        "trend": [
+          17.59,
+          16.58,
+          16.2,
+          16.34,
+          14.51,
+          17.43
+        ]
+      },
+      {
+        "name": "Consumer Service Reliability Score",
+        "department": "Operation",
+        "value": 83,
+        "unit": "score",
+        "trend": [
+          86,
+          88,
+          86,
+          75,
+          79,
+          83
+        ]
+      },
+      {
+        "name": "Composite Reliability Score",
+        "department": "Operation",
+        "value": 70,
+        "unit": "score",
+        "trend": [
+          78,
+          68,
+          86,
+          85,
+          75,
+          70
+        ]
+      },
+      {
+        "name": "Composite Efficiency Score",
+        "department": "Operation",
+        "value": 72,
+        "unit": "score",
+        "trend": [
+          65,
+          67,
+          87,
+          85,
+          66,
+          72
+        ]
+      }
+    ],
+    "charts": {
+      "reliabilityTrend": {
+        "labels": [
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Jan"
+        ],
+        "SAIDI": [
+          363.0,
+          364.3,
+          307.2,
+          315.8,
+          360.5,
+          375.0
+        ],
+        "SAIFI": [
+          11.21,
+          11.403,
+          11.291,
+          7.555,
+          10.995,
+          10.171
+        ]
+      },
+      "outageMetrics": [
+        {
+          "name": "Number of Outages (Frequency)",
+          "value": 83,
+          "unit": "count"
+        },
+        {
+          "name": "Duration of Outages (Minutes)",
+          "value": 1866.1,
+          "unit": "min"
+        },
+        {
+          "name": "MTTI",
+          "value": 17.3,
+          "unit": "min"
+        },
+        {
+          "name": "MTTR",
+          "value": 172.8,
+          "unit": "min"
+        },
+        {
+          "name": "Feeders with Maximum Outages",
+          "value": 17,
+          "unit": "count"
+        }
+      ]
+    }
+  },
+  "Dashboard-3": {
+    "title": "Dashboard-3",
+    "departments": [
+      "Technical"
+    ],
+    "kpis": [
+      {
+        "name": "% DT Peak Loading",
+        "department": "Technical",
+        "value": 48.57,
+        "unit": "%",
+        "trend": [
+          45.57,
+          50.99,
+          54.33,
+          50.05,
+          53.81,
+          48.57
+        ]
+      },
+      {
+        "name": "% DT Loading",
+        "department": "Technical",
+        "value": 77.06,
+        "unit": "%",
+        "trend": [
+          87.52,
+          75.87,
+          63.19,
+          71.94,
+          69.43,
+          77.06
+        ]
+      },
+      {
+        "name": "DT Load (kVA)",
+        "department": "Technical",
+        "value": 250,
+        "unit": "kVA"
+      },
+      {
+        "name": "% Loading Bands",
+        "department": "Technical",
+        "value": 43.11,
+        "unit": "%",
+        "trend": [
+          41.13,
+          42.26,
+          49.04,
+          47.59,
+          55.63,
+          43.11
+        ]
+      },
+      {
+        "name": "Top Overloaded DTs / Feeders",
+        "department": "Technical",
+        "value": 17,
+        "unit": "count"
+      },
+      {
+        "name": "Load Rise Trend",
+        "department": "Technical",
+        "value": 16.56,
+        "unit": "%",
+        "trend": [
+          19.55,
+          12.68,
+          13.5,
+          16.92,
+          12.98,
+          16.56
+        ]
+      },
+      {
+        "name": "Consumers exceeding sanctioned load",
+        "department": "Technical",
+        "value": 251,
+        "unit": "count"
+      },
+      {
+        "name": "% Consumers with Load Violation",
+        "department": "Technical",
+        "value": 3.37,
+        "unit": "%",
+        "trend": [
+          4.23,
+          3.26,
+          4.1,
+          3.47,
+          2.46,
+          3.37
+        ]
+      },
+      {
+        "name": "Load Duration Curve & Asset Loading Spread",
+        "department": "Technical",
+        "value": 82.59,
+        "unit": "%",
+        "trend": [
+          87.06,
+          85.78,
+          83.43,
+          62.83,
+          72.47,
+          82.59
+        ]
+      },
+      {
+        "name": "DT Failure Rate (%)",
+        "department": "Technical",
+        "value": 2.33,
+        "unit": "%",
+        "trend": [
+          1.71,
+          2.16,
+          3.01,
+          2.0,
+          2.73,
+          2.33
+        ]
+      },
+      {
+        "name": "Top Overloaded Assets",
+        "department": "Technical",
+        "value": 35,
+        "unit": "count"
+      },
+      {
+        "name": "Top Power Quality Issues",
+        "department": "Technical",
+        "value": 28,
+        "unit": "count"
+      }
+    ],
+    "charts": {
+      "loadingBands": [
+        {
+          "name": "% DT Peak Loading",
+          "value": 48.57,
+          "unit": "%"
+        },
+        {
+          "name": "% DT Loading",
+          "value": 77.06,
+          "unit": "%"
+        },
+        {
+          "name": "DT Load (kVA)",
+          "value": 250,
+          "unit": "kVA"
+        },
+        {
+          "name": "% Loading Bands",
+          "value": 43.11,
+          "unit": "%"
+        },
+        {
+          "name": "Load Rise Trend",
+          "value": 16.56,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-4": {
+    "title": "Dashboard-4",
+    "departments": [
+      "Operation"
+    ],
+    "kpis": [
+      {
+        "name": "Voltage Deviation (%)",
+        "department": "Operation",
+        "value": 11.53,
+        "unit": "%",
+        "trend": [
+          11.98,
+          10.25,
+          10.89,
+          8.68,
+          9.24,
+          11.53
+        ]
+      },
+      {
+        "name": "Voltage Deviation Index (VDI)",
+        "department": "Operation",
+        "value": 0.559,
+        "unit": "index",
+        "trend": [
+          0.573,
+          0.642,
+          0.41,
+          0.587,
+          0.56,
+          0.559
+        ]
+      },
+      {
+        "name": "Frequency Deviation Index (FDI)",
+        "department": "Operation",
+        "value": 0.064,
+        "unit": "index",
+        "trend": [
+          0.082,
+          0.048,
+          0.052,
+          0.068,
+          0.071,
+          0.064
+        ]
+      },
+      {
+        "name": "Voltage Fluctuation Index",
+        "department": "Operation",
+        "value": 0.063,
+        "unit": "index",
+        "trend": [
+          0.078,
+          0.053,
+          0.067,
+          0.068,
+          0.06,
+          0.063
+        ]
+      },
+      {
+        "name": "Voltage Unbalance Index",
+        "department": "Operation",
+        "value": 0.156,
+        "unit": "index",
+        "trend": [
+          0.197,
+          0.128,
+          0.176,
+          0.132,
+          0.146,
+          0.156
+        ]
+      },
+      {
+        "name": "Voltage Drop (V)",
+        "department": "Operation",
+        "value": 24,
+        "unit": "V"
+      },
+      {
+        "name": "Low Power Factor (%) by DT/Feeder",
+        "department": "Operation",
+        "value": 74.63,
+        "unit": "%",
+        "trend": [
+          89.73,
+          89.94,
+          60.3,
+          79.88,
+          78.02,
+          74.63
+        ]
+      },
+      {
+        "name": "Meter Current Unbalance (%)",
+        "department": "Operation",
+        "value": 10.6,
+        "unit": "%",
+        "trend": [
+          10.64,
+          8.26,
+          9.64,
+          7.86,
+          8.97,
+          10.6
+        ]
+      },
+      {
+        "name": "% Time beyond voltage tolerance band",
+        "department": "Operation",
+        "value": 6.85,
+        "unit": "%",
+        "trend": [
+          7.03,
+          6.04,
+          8.84,
+          8.11,
+          6.97,
+          6.85
+        ]
+      },
+      {
+        "name": "% Time with unacceptable current imbalance (>10%)",
+        "department": "Operation",
+        "value": 12.65,
+        "unit": "%",
+        "trend": [
+          15.93,
+          9.64,
+          15.52,
+          10.86,
+          15.61,
+          12.65
+        ]
+      }
+    ],
+    "charts": {
+      "voltageQuality": [
+        {
+          "name": "Voltage Deviation (%)",
+          "value": 11.53,
+          "unit": "%"
+        },
+        {
+          "name": "Voltage Deviation Index (VDI)",
+          "value": 0.559,
+          "unit": "index"
+        },
+        {
+          "name": "Voltage Fluctuation Index",
+          "value": 0.063,
+          "unit": "index"
+        },
+        {
+          "name": "Voltage Unbalance Index",
+          "value": 0.156,
+          "unit": "index"
+        },
+        {
+          "name": "Voltage Drop (V)",
+          "value": 24,
+          "unit": "V"
+        },
+        {
+          "name": "Low Power Factor (%) by DT/Feeder",
+          "value": 74.63,
+          "unit": "%"
+        },
+        {
+          "name": "Meter Current Unbalance (%)",
+          "value": 10.6,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-5": {
+    "title": "Dashboard-5",
+    "departments": [
+      "Analytics"
+    ],
+    "kpis": [
+      {
+        "name": "Number of Tamper Alerts (Cover Open)",
+        "department": "Analytics",
+        "value": 21,
+        "unit": "count"
+      },
+      {
+        "name": "Number of Tamper Alerts (External Magnet)",
+        "department": "Analytics",
+        "value": 17,
+        "unit": "count"
+      },
+      {
+        "name": "Number of Tamper Alerts (Neutral Disturbance)",
+        "department": "Analytics",
+        "value": 19,
+        "unit": "count"
+      },
+      {
+        "name": "Number of Tamper Alerts (Neutral Missing)",
+        "department": "Analytics",
+        "value": 19,
+        "unit": "count"
+      },
+      {
+        "name": "Consumption Comparison - Energy Gap (kWh)",
+        "department": "Analytics",
+        "value": 3570,
+        "unit": "kWh"
+      },
+      {
+        "name": "Total anomalies detected (by time period)",
+        "department": "Analytics",
+        "value": 392,
+        "unit": "count"
+      },
+      {
+        "name": "Anomalies by type",
+        "department": "Analytics",
+        "value": 8,
+        "unit": "types"
+      },
+      {
+        "name": "Anomalies by severity",
+        "department": "Analytics",
+        "value": 3,
+        "unit": "levels"
+      },
+      {
+        "name": "Anomalies by geography",
+        "department": "Analytics",
+        "value": 45,
+        "unit": "zones"
+      },
+      {
+        "name": "Anomaly trends (daily/weekly/monthly)",
+        "department": "Analytics",
+        "value": 19.12,
+        "unit": "%",
+        "trend": [
+          19.18,
+          16.26,
+          23.8,
+          13.97,
+          20.66,
+          19.12
+        ]
+      },
+      {
+        "name": "Repeat anomaly tracking",
+        "department": "Analytics",
+        "value": 5,
+        "unit": "count"
+      }
+    ],
+    "charts": {
+      "tamperByType": [
+        {
+          "name": "Cover Open",
+          "value": 21
+        },
+        {
+          "name": "External Magnet",
+          "value": 17
+        },
+        {
+          "name": "Neutral Disturbance",
+          "value": 19
+        },
+        {
+          "name": "Neutral Missing",
+          "value": 19
+        }
+      ]
+    }
+  },
+  "Dashboard-6": {
+    "title": "Dashboard-6",
+    "departments": [
+      "Analytics",
+      "Finance"
+    ],
+    "kpis": [
+      {
+        "name": "Theft Suspect Flags",
+        "department": "Analytics",
+        "value": 8,
+        "unit": "count"
+      },
+      {
+        "name": "% Reduction in Theft Events (monthly trend)",
+        "department": "Analytics",
+        "value": 18.34,
+        "unit": "%",
+        "trend": [
+          14.28,
+          23.62,
+          14.62,
+          17.7,
+          20.6,
+          18.34
+        ]
+      },
+      {
+        "name": "Theft / Load diversion",
+        "department": "Analytics",
+        "value": 9,
+        "unit": "count"
+      },
+      {
+        "name": "Areas with Highest Theft Risk",
+        "department": "Analytics",
+        "value": 5,
+        "unit": "count"
+      },
+      {
+        "name": "Revenue Recovery Improvement (%)",
+        "department": "Finance",
+        "value": 26.63,
+        "unit": "%",
+        "trend": [
+          25.11,
+          20.04,
+          18.98,
+          22.1,
+          23.81,
+          26.63
+        ]
+      }
+    ],
+    "charts": {
+      "theftRevenue": [
+        {
+          "name": "Theft Suspect Flags",
+          "value": 8,
+          "unit": "count"
+        },
+        {
+          "name": "% Reduction in Theft Events (monthly trend)",
+          "value": 18.34,
+          "unit": "%"
+        },
+        {
+          "name": "Theft / Load diversion",
+          "value": 9,
+          "unit": "count"
+        },
+        {
+          "name": "Areas with Highest Theft Risk",
+          "value": 5,
+          "unit": "count"
+        },
+        {
+          "name": "Revenue Recovery Improvement (%)",
+          "value": 26.63,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-7": {
+    "title": "Dashboard-7",
+    "departments": [
+      "Analytics",
+      "Technical"
+    ],
+    "kpis": [
+      {
+        "name": "Communication health issues",
+        "department": "Analytics",
+        "value": 10,
+        "unit": "count"
+      },
+      {
+        "name": "Signal strength statistics",
+        "department": "Technical",
+        "value": 80.01,
+        "unit": "%",
+        "trend": [
+          95.37,
+          92.7,
+          94.38,
+          95.37,
+          77.46,
+          80.01
+        ]
+      },
+      {
+        "name": "Packet loss percentage",
+        "department": "Technical",
+        "value": 1.0,
+        "unit": "%",
+        "trend": [
+          1.17,
+          1.23,
+          0.94,
+          1.07,
+          0.79,
+          1.0
+        ]
+      },
+      {
+        "name": "Communication retry counts",
+        "department": "Technical",
+        "value": 216,
+        "unit": "count"
+      },
+      {
+        "name": "Non-reporting meters (>24 hours)",
+        "department": "Technical",
+        "value": 216,
+        "unit": "count"
+      },
+      {
+        "name": "Communication technology performance (RF/GPRS/PLC)",
+        "department": "Technical",
+        "value": 96.35,
+        "unit": "%",
+        "trend": [
+          97.34,
+          85.35,
+          95.31,
+          89.65,
+          98.03,
+          96.35
+        ]
+      },
+      {
+        "name": "Weak Signal Percentage",
+        "department": "Technical",
+        "value": 15.83,
+        "unit": "%",
+        "trend": [
+          16.69,
+          12.93,
+          16.53,
+          11.83,
+          17.12,
+          15.83
+        ]
+      }
+    ],
+    "charts": {
+      "communication": [
+        {
+          "name": "Signal strength statistics",
+          "value": 80.01,
+          "unit": "%"
+        },
+        {
+          "name": "Packet loss percentage",
+          "value": 1.0,
+          "unit": "%"
+        },
+        {
+          "name": "Communication retry counts",
+          "value": 216,
+          "unit": "count"
+        },
+        {
+          "name": "Non-reporting meters (>24 hours)",
+          "value": 216,
+          "unit": "count"
+        },
+        {
+          "name": "Weak Signal Percentage",
+          "value": 15.83,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-8": {
+    "title": "Dashboard-8",
+    "departments": [
+      "Advanced Analytics"
+    ],
+    "kpis": [
+      {
+        "name": "Auto-indexing consumers and DTRs for correct mapping",
+        "department": "Advanced Analytics",
+        "value": 15777,
+        "unit": "count"
+      },
+      {
+        "name": "Track updated tag of DTs to Feeders",
+        "department": "Advanced Analytics",
+        "value": 493,
+        "unit": "count"
+      },
+      {
+        "name": "Track updated tag of consumers to DTs",
+        "department": "Advanced Analytics",
+        "value": 7791,
+        "unit": "count"
+      },
+      {
+        "name": "Re-index consumer/DTR data for correct past-period T&D loss",
+        "department": "Advanced Analytics",
+        "value": 6228,
+        "unit": "count"
+      },
+      {
+        "name": "Mapping Accuracy (95%)",
+        "department": "Advanced Analytics",
+        "value": 91.05,
+        "unit": "%",
+        "trend": [
+          95.95,
+          90.28,
+          88.24,
+          89.93,
+          91.28,
+          91.05
+        ]
+      },
+      {
+        "name": "DT-to-meter mapping accuracy",
+        "department": "Advanced Analytics",
+        "value": 98.7,
+        "unit": "%",
+        "trend": [
+          92.51,
+          95.77,
+          93.6,
+          98.83,
+          94.83,
+          98.7
+        ]
+      },
+      {
+        "name": "% meters pending field verification (<5%)",
+        "department": "Advanced Analytics",
+        "value": 1.4,
+        "unit": "%",
+        "trend": [
+          1.8,
+          1.13,
+          1.79,
+          1.2,
+          1.07,
+          1.4
+        ]
+      },
+      {
+        "name": "Confidence scoring (High/Medium/Low)",
+        "department": "Advanced Analytics",
+        "value": 89.57,
+        "unit": "%",
+        "trend": [
+          81.27,
+          87.12,
+          85.23,
+          82.7,
+          86.53,
+          89.57
+        ]
+      },
+      {
+        "name": "Total assets tracked (Meters/Feeders/DTs)",
+        "department": "Advanced Analytics",
+        "value": 62154,
+        "unit": "count"
+      },
+      {
+        "name": "Overloaded DTs identified and monitored",
+        "department": "Advanced Analytics",
+        "value": 15,
+        "unit": "count"
+      },
+      {
+        "name": "Mismatch analysis (Feeder\u2192DT, DT\u2192Meter)",
+        "department": "Advanced Analytics",
+        "value": 286,
+        "unit": "count"
+      },
+      {
+        "name": "Correctly mapped meters (%)",
+        "department": "Advanced Analytics",
+        "value": 98.18,
+        "unit": "%",
+        "trend": [
+          93.92,
+          95.91,
+          96.16,
+          95.38,
+          92.01,
+          98.18
+        ]
+      },
+      {
+        "name": "Incorrectly mapped meters requiring correction (%)",
+        "department": "Advanced Analytics",
+        "value": 5.48,
+        "unit": "%",
+        "trend": [
+          4.92,
+          4.87,
+          6.62,
+          6.2,
+          4.82,
+          5.48
+        ]
+      },
+      {
+        "name": "Verification pending count",
+        "department": "Advanced Analytics",
+        "value": 886,
+        "unit": "count"
+      },
+      {
+        "name": "Correction cycle time (avg days)",
+        "department": "Advanced Analytics",
+        "value": 12,
+        "unit": "days"
+      },
+      {
+        "name": "Transformer utilization rate (% of rated capacity)",
+        "department": "Advanced Analytics",
+        "value": 62.3,
+        "unit": "%",
+        "trend": [
+          55.64,
+          49.58,
+          60.13,
+          78.84,
+          69.38,
+          62.3
+        ]
+      },
+      {
+        "name": "Field verification completion rate",
+        "department": "Advanced Analytics",
+        "value": 92.46,
+        "unit": "%",
+        "trend": [
+          87.12,
+          91.31,
+          82.01,
+          86.88,
+          89.31,
+          92.46
+        ]
+      }
+    ],
+    "charts": {
+      "mappingAccuracy": [
+        {
+          "name": "Mapping Accuracy (95%)",
+          "value": 91.05,
+          "unit": "%"
+        },
+        {
+          "name": "Correctly mapped meters (%)",
+          "value": 98.18,
+          "unit": "%"
+        },
+        {
+          "name": "Incorrectly mapped meters requiring correction (%)",
+          "value": 5.48,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  "Dashboard-9": {
+    "title": "Dashboard-9",
+    "departments": [
+      "Analytics"
+    ],
+    "kpis": [
+      {
+        "name": "Tamper sequence detection",
+        "department": "Analytics",
+        "value": 46,
+        "unit": "count"
+      },
+      {
+        "name": "Voltage/Current imbalance",
+        "department": "Analytics",
+        "value": 67,
+        "unit": "count"
+      },
+      {
+        "name": "Power factor deterioration",
+        "department": "Analytics",
+        "value": 31,
+        "unit": "count"
+      },
+      {
+        "name": "Overload / MD breach risk",
+        "department": "Analytics",
+        "value": 68,
+        "unit": "count"
+      },
+      {
+        "name": "Hidden outage pockets",
+        "department": "Analytics",
+        "value": 15,
+        "unit": "count"
+      },
+      {
+        "name": "Data quality issues",
+        "department": "Analytics",
+        "value": 80,
+        "unit": "count"
+      },
+      {
+        "name": "Reverse flow",
+        "department": "Analytics",
+        "value": 15,
+        "unit": "count"
+      },
+      {
+        "name": "Consumption spikes/drops",
+        "department": "Analytics",
+        "value": 63,
+        "unit": "count"
+      },
+      {
+        "name": "Phase-level mapping accuracy",
+        "department": "Analytics",
+        "value": 92.54,
+        "unit": "%",
+        "trend": [
+          86.54,
+          92.62,
+          91.91,
+          83.49,
+          97.23,
+          92.54
+        ]
+      },
+      {
+        "name": "Phase imbalance reduced by minimum 30%",
+        "department": "Analytics",
+        "value": 36.38,
+        "unit": "%",
+        "trend": [
+          43.56,
+          30.84,
+          28.89,
+          46.98,
+          39.79,
+          36.38
+        ]
+      },
+      {
+        "name": "Real-time phase load monitoring per transformer",
+        "department": "Analytics",
+        "value": 91.38,
+        "unit": "%",
+        "trend": [
+          97.41,
+          93.06,
+          95.06,
+          90.38,
+          90.6,
+          91.38
+        ]
+      },
+      {
+        "name": "Imbalance alerts when threshold exceeded",
+        "department": "Analytics",
+        "value": 10,
+        "unit": "count"
+      },
+      {
+        "name": "Phase transfer recommendations (what-if)",
+        "department": "Analytics",
+        "value": 62,
+        "unit": "count"
+      }
+    ],
+    "charts": {
+      "anomalyPhase": [
+        {
+          "name": "Tamper sequence detection",
+          "value": 46,
+          "unit": "count"
+        },
+        {
+          "name": "Voltage/Current imbalance",
+          "value": 67,
+          "unit": "count"
+        },
+        {
+          "name": "Power factor deterioration",
+          "value": 31,
+          "unit": "count"
+        },
+        {
+          "name": "Overload / MD breach risk",
+          "value": 68,
+          "unit": "count"
+        },
+        {
+          "name": "Hidden outage pockets",
+          "value": 15,
+          "unit": "count"
+        },
+        {
+          "name": "Data quality issues",
+          "value": 80,
+          "unit": "count"
+        },
+        {
+          "name": "Reverse flow",
+          "value": 15,
+          "unit": "count"
+        },
+        {
+          "name": "Consumption spikes/drops",
+          "value": 63,
+          "unit": "count"
+        },
+        {
+          "name": "Phase-level mapping accuracy",
+          "value": 92.54,
+          "unit": "%"
+        },
+        {
+          "name": "Phase imbalance reduced by minimum 30%",
+          "value": 36.38,
+          "unit": "%"
+        }
+      ]
+    }
+  }
+}

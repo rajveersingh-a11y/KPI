@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KPI Dashboards</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --border: #2d3a4f;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent1: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #d29922;
+      --accent4: #f85149;
+      --accent5: #a371f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    header h1 { margin: 0; font-size: 1.25rem; font-weight: 600; }
+    nav {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      transition: color 0.15s, background 0.15s;
+    }
+    nav a:hover { color: var(--text); background: var(--border); }
+    nav a.active { color: var(--accent1); background: rgba(88,166,255,0.15); }
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .dashboard-panel { display: none; }
+    .dashboard-panel.active { display: block; }
+    .dashboard-panel h2 {
+      margin: 0 0 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .dept-pill {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      background: var(--border);
+      color: var(--muted);
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .kpi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: border-color 0.15s;
+    }
+    .kpi-card:hover { border-color: var(--accent1); }
+    .kpi-card .name {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .kpi-card .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent1);
+    }
+    .kpi-card .unit { font-size: 0.85rem; color: var(--muted); margin-left: 0.25rem; }
+    .chart-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .chart-section h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .chart-wrap { position: relative; height: 280px; }
+    .chart-wrap.sm { height: 220px; }
+    .bar-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .bar-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .bar-list .label { flex: 0 0 180px; font-size: 0.85rem; color: var(--muted); }
+    .bar-list .bar-track {
+      flex: 1;
+      height: 24px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-list .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent5));
+      transition: width 0.3s;
+    }
+    .bar-list .val { flex: 0 0 70px; text-align: right; font-weight: 600; font-size: 0.9rem; }
+    .loading { padding: 2rem; text-align: center; color: var(--muted); }
+    .err { padding: 2rem; color: var(--accent4); text-align: center; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KPI Dashboards</h1>
+    <nav id="nav"></nav>
+  </header>
+  <main>
+    <div id="panels"></div>
+    <div id="loading" class="loading">Loading dashboard data…</div>
+    <div id="err" class="err" style="display:none">Failed to load data. Run: python export_dashboard_data.py then open via a local server (e.g. python -m http.server 8080).</div>
+  </main>
+  <script>
+    const COLORS = ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#a371f7', '#79c0ff', '#7ee787'];
+    let data = null;
+    const chartInstances = {};
+
+    function formatVal(v, unit) {
+      if (typeof v === 'number' && Number.isInteger(v) && unit === 'count') return v.toLocaleString();
+      if (typeof v === 'number') return Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 });
+      return v;
+    }
+
+    function renderNav() {
+      const nav = document.getElementById('nav');
+      for (let i = 1; i <= 9; i++) {
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = `D-${i}`;
+        a.dataset.dashboard = `Dashboard-${i}`;
+        a.addEventListener('click', (e) => { e.preventDefault(); setActive(`Dashboard-${i}`); });
+        nav.appendChild(a);
+      }
+    }
+
+    function setActive(dashboardId) {
+      document.querySelectorAll('.dashboard-panel').forEach(p => { p.classList.remove('active'); });
+      document.querySelectorAll('#nav a').forEach(a => { a.classList.toggle('active', a.dataset.dashboard === dashboardId); });
+      const panel = document.getElementById(`panel-${dashboardId}`);
+      if (panel) panel.classList.add('active');
+    }
+
+    function renderBarList(items, maxVal) {
+      const m = maxVal || Math.max(...items.map(x => x.value), 1);
+      return items.map((item, i) => ({
+        ...item,
+        pct: (Number(item.value) / m) * 100
+      }));
+    }
+
+    function addLineChart(containerId, labels, datasets, title) {
+      const ctx = document.getElementById(containerId);
+      if (!ctx) return;
+      if (chartInstances[containerId]) chartInstances[containerId].destroy();
+      const chartData = {
+        labels,
+        datasets: datasets.map((ds, i) => ({
+          label: ds.name,
+          data: ds.data,
+          borderColor: COLORS[i % COLORS.length],
+          backgroundColor: COLORS[i % COLORS.length] + '20',
+          fill: true,
+          tension: 0.3
+        }))
+      };
+      chartInstances[containerId] = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    function addBarChart(containerId, labels, values, title, color) {
+      const ctx = document.getElementById(containerId);
+      if (!ctx) return;
+      if (chartInstances[containerId]) chartInstances[containerId].destroy();
+      chartInstances[containerId] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{ label: title || 'Value', data: values, backgroundColor: color || COLORS[0] + 'cc', borderColor: color || COLORS[0], borderWidth: 1 }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    function addDoughnutChart(containerId, labels, values, title) {
+      const ctx = document.getElementById(containerId);
+      if (!ctx) return;
+      if (chartInstances[containerId]) chartInstances[containerId].destroy();
+      chartInstances[containerId] = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels,
+          datasets: [{ data: values, backgroundColor: COLORS.slice(0, labels.length), borderWidth: 0 }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right' } }
+        }
+      });
+    }
+
+    function renderDashboard(id, d) {
+      const panel = document.createElement('div');
+      panel.id = `panel-${id}`;
+      panel.className = 'dashboard-panel';
+      let html = `<h2>${d.title}</h2>`;
+      if (d.departments && d.departments.length) {
+        html += d.departments.map(dept => `<span class="dept-pill">${dept}</span>`).join('');
+      }
+      html += '<div class="kpi-grid">';
+      (d.kpis || []).forEach(k => {
+        html += `<div class="kpi-card"><div class="name">${k.name}</div><div class="value">${formatVal(k.value, k.unit)}<span class="unit">${k.unit || ''}</span></div></div>`;
+      });
+      html += '</div>';
+
+      const charts = d.charts || {};
+      if (charts.lossTrend && charts.lossTrend.datasets && charts.lossTrend.datasets.length) {
+        const cid = `chart-${id}-loss`;
+        html += `<div class="chart-section"><h3>Loss % trend (6 months)</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartLoss = JSON.stringify({ id: cid, ...charts.lossTrend });
+      }
+      if (charts.efficiency && charts.efficiency.length) {
+        const cid = `chart-${id}-eff`;
+        const labels = charts.efficiency.map(e => e.name.replace(' (%)', '').replace('AT&C Loss', 'AT&C'));
+        const values = charts.efficiency.map(e => e.value);
+        html += `<div class="chart-section"><h3>Billing & collection</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartEff = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.reliabilityTrend && charts.reliabilityTrend.labels) {
+        const cid = `chart-${id}-rel`;
+        html += `<div class="chart-section"><h3>SAIDI / SAIFI trend</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartRel = JSON.stringify({ id: cid, ...charts.reliabilityTrend });
+      }
+      if (charts.outageMetrics && charts.outageMetrics.length) {
+        const cid = `chart-${id}-out`;
+        const labels = charts.outageMetrics.map(o => o.name.length > 25 ? o.name.slice(0, 22) + '…' : o.name);
+        const values = charts.outageMetrics.map(o => o.value);
+        html += `<div class="chart-section"><h3>Outage & response metrics</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartOut = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.loadingBands && charts.loadingBands.length) {
+        const cid = `chart-${id}-load`;
+        const labels = charts.loadingBands.map(l => l.name.length > 20 ? l.name.slice(0, 18) + '…' : l.name);
+        const values = charts.loadingBands.map(l => l.value);
+        html += `<div class="chart-section"><h3>Loading metrics</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartLoad = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.voltageQuality && charts.voltageQuality.length) {
+        const cid = `chart-${id}-volt`;
+        const labels = charts.voltageQuality.map(v => v.name.length > 28 ? v.name.slice(0, 25) + '…' : v.name);
+        const values = charts.voltageQuality.map(v => v.value);
+        html += `<div class="chart-section"><h3>Voltage & power quality</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartVolt = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.theftRevenue && charts.theftRevenue.length) {
+        const cid = `chart-${id}-theft`;
+        const labels = charts.theftRevenue.map(t => t.name.length > 30 ? t.name.slice(0, 27) + '…' : t.name);
+        const values = charts.theftRevenue.map(t => t.value);
+        html += `<div class="chart-section"><h3>Theft & revenue</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartTheft = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.tamperByType && charts.tamperByType.length) {
+        const cid = `chart-${id}-tamper`;
+        const labels = charts.tamperByType.map(t => t.name);
+        const values = charts.tamperByType.map(t => t.value);
+        html += `<div class="chart-section"><h3>Tamper alerts by type</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartTamper = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.communication && charts.communication.length) {
+        const cid = `chart-${id}-comm`;
+        const labels = charts.communication.map(c => c.name.length > 28 ? c.name.slice(0, 25) + '…' : c.name);
+        const values = charts.communication.map(c => c.value);
+        html += `<div class="chart-section"><h3>Communication health</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartComm = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.mappingAccuracy && charts.mappingAccuracy.length) {
+        const cid = `chart-${id}-map`;
+        const labels = charts.mappingAccuracy.map(m => m.name.length > 30 ? m.name.slice(0, 27) + '…' : m.name);
+        const values = charts.mappingAccuracy.map(m => m.value);
+        html += `<div class="chart-section"><h3>Mapping & verification</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartMap = JSON.stringify({ id: cid, labels, values });
+      }
+      if (charts.anomalyPhase && charts.anomalyPhase.length) {
+        const cid = `chart-${id}-anom`;
+        const labels = charts.anomalyPhase.map(a => a.name.length > 22 ? a.name.slice(0, 19) + '…' : a.name);
+        const values = charts.anomalyPhase.map(a => a.value);
+        html += `<div class="chart-section"><h3>Anomaly & phase metrics</h3><div class="chart-wrap"><canvas id="${cid}"></canvas></div></div>`;
+        panel.dataset.chartAnom = JSON.stringify({ id: cid, labels, values });
+      }
+
+      panel.innerHTML = html;
+      document.getElementById('panels').appendChild(panel);
+    }
+
+    function drawChartsForPanel(panel) {
+      const id = panel.id.replace('panel-', '');
+      if (panel.dataset.chartLoss) {
+        const o = JSON.parse(panel.dataset.chartLoss);
+        addLineChart(o.id, o.labels, o.datasets, 'Loss trend');
+      }
+      if (panel.dataset.chartEff) {
+        const o = JSON.parse(panel.dataset.chartEff);
+        addDoughnutChart(o.id, o.labels, o.values, 'Efficiency');
+      }
+      if (panel.dataset.chartRel) {
+        const o = JSON.parse(panel.dataset.chartRel);
+        addLineChart(o.id, o.labels, [
+          { name: 'SAIDI (min)', data: o.SAIDI },
+          { name: 'SAIFI', data: o.SAIFI }
+        ], 'Reliability');
+      }
+      if (panel.dataset.chartOut) {
+        const o = JSON.parse(panel.dataset.chartOut);
+        addBarChart(o.id, o.labels, o.values, 'Outages', COLORS[1] + 'cc');
+      }
+      if (panel.dataset.chartLoad) {
+        const o = JSON.parse(panel.dataset.chartLoad);
+        addBarChart(o.id, o.labels, o.values, 'Loading', COLORS[3] + 'cc');
+      }
+      if (panel.dataset.chartVolt) {
+        const o = JSON.parse(panel.dataset.chartVolt);
+        addBarChart(o.id, o.labels, o.values, 'Voltage/PF', COLORS[2] + 'cc');
+      }
+      if (panel.dataset.chartTheft) {
+        const o = JSON.parse(panel.dataset.chartTheft);
+        addBarChart(o.id, o.labels, o.values, 'Theft/Revenue', COLORS[4] + 'cc');
+      }
+      if (panel.dataset.chartTamper) {
+        const o = JSON.parse(panel.dataset.chartTamper);
+        addBarChart(o.id, o.labels, o.values, 'Tamper', COLORS[4] + 'cc');
+      }
+      if (panel.dataset.chartComm) {
+        const o = JSON.parse(panel.dataset.chartComm);
+        addBarChart(o.id, o.labels, o.values, 'Communication', COLORS[5] + 'cc');
+      }
+      if (panel.dataset.chartMap) {
+        const o = JSON.parse(panel.dataset.chartMap);
+        addBarChart(o.id, o.labels, o.values, 'Mapping', COLORS[0] + 'cc');
+      }
+      if (panel.dataset.chartAnom) {
+        const o = JSON.parse(panel.dataset.chartAnom);
+        addBarChart(o.id, o.labels, o.values, 'Anomaly/Phase', COLORS[6] + 'cc');
+      }
+    }
+
+    function init() {
+      document.getElementById('loading').style.display = 'none';
+      renderNav();
+      if (!data) {
+        document.getElementById('err').style.display = 'block';
+        return;
+      }
+      Object.entries(data).forEach(([id, d]) => renderDashboard(id, d));
+      setActive('Dashboard-1');
+      document.querySelectorAll('.dashboard-panel').forEach(drawChartsForPanel);
+    }
+
+    fetch('dashboards.json')
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('Not ok')))
+      .then(json => { data = json; init(); })
+      .catch(() => init());
+  </script>
+</body>
+</html>
